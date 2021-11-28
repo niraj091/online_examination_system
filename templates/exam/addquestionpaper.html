@@ -1,0 +1,79 @@
+{% extends "base_faculty.html" %}
+{% load static %}
+
+
+{% block body %}
+
+<style>
+
+
+
+.main__container {
+  padding: 20px 45px;
+  margin-left:80px;
+ 
+ 
+}
+.main__cards {
+  display: grid;
+  width:80%;
+  
+  
+}
+.card {
+  display: flex;
+ justify-content: center;  
+  height: 200px;
+  width:100%;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;
+}
+
+#id_questions,#id_Question_Paper_Title{
+   padding:.375rem .75rem;
+  font-size:1rem;
+  font-weight:400;
+  color: #745959;
+  background-color:#fff;
+  border:1px solid #745959; 
+  border-radius:.25rem;
+  transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+#id_questions{
+width:90%;
+}
+#id_Question_Paper_Title{
+width:80%;
+}
+.btn1 {
+  cursor: pointer;
+  width: 60%;
+  padding: 0.8rem 0;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #1da1f2;
+  color: #fff;
+  font-size: 1.2rem;
+  outline: none;
+}
+</style>
+<main>
+        <div class="main__container">
+          <div class="main__cards">
+          <div class="card">
+              <div class="card_inner">
+               <form method="POST" action="{% url 'faculty-add_question_paper' %}">
+                 {% csrf_token %}
+                    {{examform.as_p}}
+                   <br> <div class="text-center">
+                <button class= "btn1" type="submit">Submit</button>
+                </div>
+            </form>
+              </div>
+            </div>
+          
+          </div>
+      </main>
+
+ {% endblock body %}

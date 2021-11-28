@@ -1,0 +1,86 @@
+{% extends 'base_student.html' %}
+{%load static %}
+
+{% block body %}
+<style>
+.row{
+ display:grid;
+ 
+ grid-template-rows:1fr 1fr;
+ grid-template-columns:1fr 1fr 1fr;
+ 
+}
+.im{
+align-items:center;
+  width:5em;
+  margin-left:65px;
+}
+.card {
+    
+  height:300px;
+  width:60%;
+ 
+  margin-left:20px; 
+  margin-top: 10px;
+}
+.card-title,.card-text{
+padding:2px;
+text-align:center;
+
+}
+.btn{
+border: 2px solid black;
+  background-color: white;
+  color: black;
+  margin-left:45px;
+  padding: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Green */
+.success {
+  border-color: #04AA6D;
+  color: green;
+}
+
+.success:hover {
+  background-color: #04AA6D;
+  color: white;
+
+}
+</style>
+<main>   
+    <div class="cards">
+            <div class="row">
+                {% if exams %}
+                    {% for exam in exams %}
+                        <div class="card  text-center">
+                            <img class="card-img-top im" src="{% static 'image/test.png' %}">
+                            <div class="card-body">
+                                <h4 class="card-title">{{exam.name}}</h4>
+                                <p class="card-text">Professor: {{exam.professor.first_name}} {{exam.professor.last_name}}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-center">Question Paper - {{exam.question_paper.Question_Paper_Title}}</li>
+                            </ul>
+                            <div class="card-body text-center">
+                              <br>  <a onclick = window.open("{% url 'appear-exam' exam.id  %}","","width=800,height=800") target="_blank" class="btn success">Appear</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+           <div class="card " style="width:700px; height:50px;">
+               <h1> No Scheduled Exams</h1>
+            </div>
+        {% endif %}
+            </div>
+    </div>
+    
+     
+     </main>       
+
+{% endblock %}
+
+
+          

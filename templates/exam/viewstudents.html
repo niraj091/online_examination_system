@@ -1,0 +1,91 @@
+{% extends "base_faculty.html" %}
+{% load static %}
+
+
+
+{% block body %}
+<style>
+.row{
+display:grid;
+ grid-template-rows:1fr 1fr;
+ grid-template-columns:1fr 1fr 1fr;
+}
+table {
+        margin-top:50px;
+        position: absolute;
+        left:35%;
+        border-collapse: collapse;
+        width: 550px;
+        height: 50px;
+        border: 1px solid #bdc3c7;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    tr {
+        transition: all .2s ease-in;
+        cursor: pointer;
+    }
+    
+    th,
+    td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    #header1{
+        background-color: #16a085;
+        color: #fff;
+    }
+    
+    
+    
+    tr:hover {
+        background-color: #f5f5f5;
+        transform: scale(1.02);
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+    @media only screen and (max-width: 768px) {
+    
+        table {
+        border-collapse: collapse;
+        margin-left:0;
+        margin-top:10px;
+        width: 360px;
+        height: 50px;
+        border: 1px solid #bdc3c7;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+        
+         
+        }
+
+</style>
+<main>   
+    <div class="cards">
+            <div class="row">
+             {% if students %}
+             <table>
+        <tr id="header1">
+      <th scope="col">Student Name</th>
+      <th scope="col">Exams Attended</th>
+        </tr>
+          {% for key, values in students.items %}
+             <tr>
+                    <td>{{key}}</td>
+                    <td>{{values}}</td>
+             </tr>
+                {% endfor %}       
+        </table> 
+       {% else %}
+            <div class="card">
+              <div class="card_inner">
+                <p class="text-primary-p">No Student Exist in the Database</p>
+              </div>
+            </div>
+           
+       {% endif %}
+              </div>
+          </div>
+      </main>
+
+ {% endblock body %}

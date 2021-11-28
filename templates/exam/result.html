@@ -1,0 +1,86 @@
+{% extends "base_student.html" %}
+{% load static %}
+
+
+
+{% block body %}
+<style>
+.row{
+display:grid;
+ grid-template-rows:1fr 1fr;
+ grid-template-columns:1fr 1fr 1fr;
+}
+table {
+        margin-top:50px;
+        position: absolute;
+        left:32%;
+        border-collapse: collapse;
+        width: 580px;
+        height: 50px;
+        border: 1px solid #bdc3c7;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    tr {
+        transition: all .2s ease-in;
+        cursor: pointer;
+    }
+    
+    th,
+    td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    #header1{
+        background-color: #16a085;
+        color: #fff;
+    }
+    
+    
+    
+    tr:hover {
+        background-color: #f5f5f5;
+        transform: scale(1.02);
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+    @media only screen and (max-width: 768px) {
+    
+        table {
+        border-collapse: collapse;
+        margin-left:0;
+        margin-top:10px;
+        width: 360px;
+        height: 50px;
+        border: 1px solid #bdc3c7;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+        
+         
+        }
+
+</style>
+<main>   
+    <div class="cards">
+            <div class="row">
+             <table>
+        <tr id="header1">
+             <th scope="col">Exam Professor</th>
+                <th scope="col">Exam Name</th>
+                <th scope="col">Exam Title</th>
+                <th scope="col">Marks Obtained</th>
+                <th scope="col">Total Marks</th>
+        </tr>
+             <tr>
+                    <td>{{exam.professor.first_name}} {{exam.professor.last_name}}</td>
+                    <td>{{exam.name}}</td>
+                    <td>{{exam.question_paper.Question_Paper_Title}}</td>
+                    <td>{{score}}</td>
+                    <td>{{exam.total_marks}}</td>
+             </tr>     
+        </table>
+              </div>
+          </div>
+      </main>
+
+ {% endblock body %}

@@ -1,0 +1,74 @@
+{% extends 'base_student.html' %}
+
+
+{% block body %}
+<style media="screen">
+.row{
+ display:grid;
+ 
+ grid-template-rows:1fr 1fr;
+ grid-template-columns:1fr ;
+ 
+}
+
+.card {
+  display: grid;
+  grid-template-columns:1fr; 
+  height:300px;
+  margin-left:20px; 
+  margin-top: 10px;
+  
+}
+
+.btn{
+
+  background-color: white;
+  color: blue;
+  margin-top:15px;
+  margin-left:65px;
+  padding: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+select{
+width:210px;
+height:30px;
+text-align-last:center;
+
+}
+</style>
+<main>
+	 <div class="cards">
+            <div class="row">
+		<div class="card">
+		{% include 'partials/_messages.html' %}
+		<h3>Login Email Notifications</h3>
+		<form method="post" action="{% url 'email-student-pref' %}">
+			{% csrf_token %}
+			  <select name = "email_pref" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+
+			  	{% if student_preference %}
+			    	<option selected name = "email_pref" value = "{{ student_preference.sendEmailOnLogin }}">{{ email_pref_value }}</option>
+					<option name = "email_pref" value="False" >Off</option>
+                    <option name = "email_pref" value="True" >On</option>
+			    {% else %}
+					<option selected name = "email_pref" value = "True">On</option>
+					<option name = "email_pref" value="False" >Off</option>
+				{% endif %}
+			  </select>
+			  <div class="input-group-append">
+			    <button class="btn btn-outline-light" type="submit" value="Save" style="border-color:#745959; color:#745959;">Save</button>
+			  </div>
+	
+		</form>
+
+		
+		<h3>Change Password : <a href="{% url 'change_password'%}" class ="btn1">Click here to change password</a></h3>
+
+	</div>
+		</div>
+			</div>
+
+</main>
+
+{% endblock %}

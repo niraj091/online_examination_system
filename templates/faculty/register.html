@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static "css/register.css" %}">
+ <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+{% endblock link %}
+{% block body %}
+<div class="container">
+    <div class="content">  
+          <form action="{% url 'faculty-register' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include 'partials/_messages.html' %}
+            <h2>Faculty Registration</h2>
+             <div class="user-details">
+              <div class="input-box">
+			<label for = "username">Username</label>
+              {{faculty_form.username}}
+            <div class="invalid-feedback usernamevalidOut" style="display: none;">
+            </div>
+            </div>
+
+            <div class="input-box">
+              <label for = "firstname">First Name</label>
+              {{faculty_form.first_name}}
+            </div>
+            <div class="input-box">
+              <label for = "lastname">Last Name</label>
+              {{faculty_form.last_name}}
+            </div>
+            
+            <div class="input-box">
+              <label for = "email">Email</label>
+              {{faculty_form.email}}
+            <div class="email-feedback invalid-feedback" style="display: none">
+            </div>
+            </div>
+            <div class="input-box">
+              <label for = "password">Password </label>
+              {{faculty_form.password}}
+              <small class="float-right py-2 showPasswordToggle">SHOW</small>
+              
+            </div>
+            <div class="input-box">
+              <label for = "password" >Confirm Password </label>
+              {{faculty_form.confirm_password}}
+    
+            </div>
+            <div class="input-box">
+              <label for = "subject">Subject</label>
+              {{faculty_info_form.subject}}
+            </div>
+            <div class="pic">
+              <label for = "picture">Profile Picture </label>
+              {{faculty_info_form.picture}}
+          </div>   
+          
+       
+            <input type="submit" value="Register" class="button"/>
+         
+          </form>
+          <div>
+            <span class = "text-lead lead"> Already have an account? </span><a href = "{% url 'faculty-login' %}" class="log" style="color:blue; font-size:20px;">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+	</div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+<script src = "{% static 'js/register.js' %}" type="text/javascript"></script>
+
+{% endblock  %}

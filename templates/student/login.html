@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+<link rel="stylesheet" href="{% static "css/login.css" %}">
+ <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+{% endblock link %}
+
+{% block body %}
+<div class="container-fluid">
+<div class="row">
+  <div class="col align-center flex-col sign-in">
+    <div class="form-wrapper align-center">
+      <div class="form sign-in ">
+		<form action="{% url 'login' %}" method="post">
+	{% csrf_token %}
+    {% include 'partials/_messages.html' %}
+     <img src="{% static "image/login.jpg"%}" style="width:250px">
+            <h2>Login to your account</h2>
+					<div class="input-group">
+					   <i class="bx bxs-user"></i>
+						<input type="text" name="username" id = "usernamefield"
+						value="{{fieldValues.username}}" placeholder ="Username">
+					</div>
+              <div class="input-group">
+              <i class="bx bxs-lock-alt"></i>
+              <input type="password" name="password" id = "passwordfield" placeholder ="Password">
+					</div>
+<input type="submit" value="Login" class = "btn1"/>
+           </form>
+					<div class="container1">
+						<span class = "text-lead lead"> Don't have an account? </span><a href = "{% url 'register' %}" class="" style="color:#afbcd; font-size:20px;">Register</a>
+
+						<br>
+
+<a href = "{% url 'password_reset' %}" class="" style="color:#745959; font-weight:bold;"><u>Forgot Password?</u></a>
+					</div>
+				</div>
+			</div>
+      </div>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+
+<script src = "{% static 'js/register.js' %}" type="text/javascript"></script>
+
+{% endblock %}

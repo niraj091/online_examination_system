@@ -1,0 +1,78 @@
+{% extends "base_faculty.html" %}
+{% load static %}
+{% block body %}
+<main>
+        <div class="main__container">
+          <!-- MAIN TITLE STARTS HERE -->
+
+          <div class="main__title">
+            <img src="{% static "image/hello.svg" %}" alt=""/>
+            <div class="main__greeting">
+            {% if user.first_name %}
+            <h1>{{greet}} {{user.first_name}}</h1>
+            {% else %}
+            <h1>{{greet}} {{user}}</h1>
+            {% endif %}
+              <p>Welcome to your dashboard</p>
+             
+            </div>
+          </div>
+
+          <!-- MAIN TITLE ENDS HERE -->
+
+          <!-- MAIN CARDS STARTS HERE -->
+          <div class="main__cards">
+          <div class="card">
+              <i
+                class="fa fa-user fa-2x text-red"
+                aria-hidden="true"
+              ></i>
+              <a href="{% url 'faculty-student' %}">
+              <div class="card_inner">
+                <p class="text-primary-p">Students</p>
+                <span class="font-bold text-title">{{stu}}</span>
+              </div></a>
+            </div>
+            <div class="card">
+              <i
+                class="fa fa-question fa-2x text-lightblue"
+                aria-hidden="true"
+              ></i>
+              <a href="{% url 'faculty-addquestions' %}"> 
+              <div class="card_inner">
+                <p class="text-primary-p">Add QuestionsExams</p>
+     
+              </div></a>
+            </div>
+            <div class="card">
+              <i
+                class="fa fa-file fa-2x text-pink"
+                aria-hidden="true"
+              ></i>
+              <a href="{% url 'faculty-add_question_paper'  %}"> 
+              <div class="card_inner">
+                <p class="text-primary-p">Create Question Paper</p>
+     
+              </div></a>
+            </div>
+            <div class="card">
+              <i
+                class="fa fa-edit fa-2x text-green"
+                aria-hidden="true"
+              ></i>
+              <a href="{% url 'view_exams' %}"> 
+              <div class="card_inner">
+                <p class="text-primary-p">Create Exams</p>
+     
+              </div></a>
+            </div>
+
+          
+          </div>
+          <!-- MAIN CARDS ENDS HERE -->
+
+          <!-- CHARTS STARTS HERE -->
+     
+      </main>
+
+ {% endblock body %}

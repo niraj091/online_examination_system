@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock link %}
+{% block body %}
+
+    <div class="container">
+        <div class="row custom-section d-flex align-items-center">
+            <div class="col-12 col-lg-3">
+                <h2>Online</h2>
+                <h3>Examination System</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, quidem!</p>
+                <div class="row">
+            
+                <a style="margin-right:12px" href="/student/login" >Log In</a>
+                <a href="/student/register">Sign Up</a>
+           
+             </div>
+            </div>
+            <div class="col-12 col-lg-8">
+                <img src="{% static "image/home.png"%}" alt="">
+            </div>
+        </div>
+  </div>  
+{% endblock body %}

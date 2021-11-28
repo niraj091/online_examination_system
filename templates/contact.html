@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+<style>
+.row{
+display:flex;
+justify-content:center;
+align-items:center;
+background-color:#297eff;
+height:100vh;
+}
+.container{
+ 
+  max-width: 1000px;
+  width: 100%;
+  height:400px;
+  background: #fff;
+  border-radius: 12px;
+ margin-top:20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+.container .content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 20px;
+}
+.content .image-box{
+  max-width: 55%;
+}
+.content .image-box img{
+  width: 100%;
+}
+.content .topic{
+  font-size: 22px;
+  font-weight: 500;
+  
+}
+.content form{
+  width: 40%;
+  margin-right: 30px;
+}
+.content .input-box{
+  height: 50px;
+  width: 100%;
+  margin: 16px 0;
+  position: relative;
+}
+.content .input-box input{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+
+  background: #efefef;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+.content .input-box input:focus,
+.content .input-box input:valid{
+  border-color: #ba24c2;
+  background-color: #fff;
+}
+
+
+.content .message-box{
+  min-height: 100px;
+  position: relative;
+}
+.content .message-box textarea{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  resize: none;
+  background: #efefef;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  outline: none;
+  transition:all 0.3s ease;
+}
+.content .message-box textarea:focus{
+  border-color: #ba24c2;
+  background-color: #fff;
+}
+
+
+.content .input-box input[type="submit"]{
+  color: #fff;
+  background: #1da1f2;
+  padding-left: 0;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border:None;
+}
+.content .input-box input[type="submit"]:hover{
+  background-color: #1da1f2;
+}
+@media (max-width:1000px) {
+
+ 
+  .content .image-box{
+    max-width: 70%;
+  }
+  .content{
+    padding: 10px 0;
+  }
+}
+@media (max-width:900px) {
+.row{
+height:600px;
+}
+ .container{
+ margin: 20px 20px;
+ height:400px;
+ 
+ }
+  .content .image-box{
+    display: flex;
+    justify-content:center;
+  }
+  .content form{
+    width: 100%;
+    margin-left: 30px;
+  }
+}
+
+</style>
+<div class="row">
+     <div class="container">
+    <div class="content">
+      <div class="image-box">
+       <img src="{% static 'image/contact.png' %}" alt=""> 
+      </div>
+    <form action="" method="POST">
+    {% csrf_token %}
+      <div class="topic">Contact Us</div>
+      <div class="input-box">
+        <input type="text" name="name" placeholder="Enter your name" required>
+      </div>
+      <div class="input-box">
+        <input type="text" name="email" placeholder="Enter your email" required>
+       
+      </div>
+      <div class="message-box">
+      <textarea placeholder="Enter message" name="msg"></textarea>
+       
+      </div>
+      <div class="input-box">
+        <input type="submit" class="btn submit-btn" value="Send Message">
+      </div>
+    </form>
+  </div>
+  </div>
+  
+{% endblock body %}

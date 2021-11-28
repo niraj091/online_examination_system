@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static "css/dash.css" %}"/>
+ 
+    <title>FACULTY DASHBOARD</title>
+  </head>
+  <body id="body">
+    <div class="container">
+      <nav class="navbar">
+        <div class="nav_icon" onclick="toggleSidebar()">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+        <div class="navbar__left">
+          <a class="active_link" href="#">Faculty Dashboard</a>
+        </div>
+        <div class="navbar__right">
+      <h3 class="name" style="margin-right:1rem;">{{user.first_name}} {{user.last_name}}</h3>
+       {% if request.user.facultyinfo.picture %}
+            <img class="profilepic" width="40" src="{{request.user.facultyinfo.picture.url}}" alt=""/>
+       {% else %}
+            <img class="profilepic" width="40" src="{% static 'image/avatar.svg' %}" alt=""/>
+      {% endif %}
+        </div>
+      </nav>
+{% block body %}{%endblock body%}
+      
+
+      <div id="sidebar">
+        <div class="sidebar__title">
+          <div class="sidebar__img">
+            <h1>Examination System</h1>
+          </div>
+          <i
+            onclick="closeSidebar()"
+            class="fa fa-times"
+            id="sidebarIcon"
+            aria-hidden="true"
+          ></i>
+        </div>
+
+        <div class="sidebar__menu">
+          <div class="sidebar__link active_menu_link">
+            <a href="#">Dashboard</a>
+          </div>
+          <div class="sidebar__link">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            <a href="/faculty">Home</a>
+          </div>
+          <h2>EXAM</h2>
+          <div class="sidebar__link">
+            <i class="fa fa-question"></i>
+            <a href="{% url 'faculty-addquestions' %}"> Add Questions</a>
+          </div>
+          <div class="sidebar__link">
+            <i class="fa fa-file"></i>
+            <a href="{% url 'faculty-add_question_paper' %}">Question Paper</a>
+          </div>
+          <div class="sidebar__link">
+            <i class="fa fa-edit"></i>
+            <a href="{% url 'view_exams' %}">Create Exam</a>
+          </div>
+          <div class="sidebar__link">
+            <i class="fa fa-calendar"></i>
+            <a href="{% url 'faculty-previous' %}">Previous Exams</a>
+          </div>
+          <div class="sidebar__link">
+            <i class="fa fa-user"></i>
+            <a href="{% url 'faculty-student' %}">Students</a>
+          </div>
+          <div class="sidebar__link">
+            <i class="fa fa-list"></i>
+            <a href="{% url 'faculty-result' %}">Result</a>
+          </div>
+           <form id="my_form" action="{% url 'faculty-logout' %}" method="POST">
+         {% csrf_token %}
+          <div class="sidebar__logout">
+            <i class="fa fa-power-off"></i>
+            <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">Log out</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="{%static "js/script.js"%}"></script>
+  </body>
+</html>
